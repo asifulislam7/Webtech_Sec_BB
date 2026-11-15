@@ -6,44 +6,56 @@
   <title>Register</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body class="auth-body">
+
   <div class="auth-card">
+
     <h1>Create Account</h1>
     <p class="subtitle">Fill in the details to register</p>
 
-    <form action="index.html" method="get">
+    <form id="registerForm" novalidate>
+
       <div class="form-group">
         <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="John Doe" required>
+        <input type="text" id="name" name="name" placeholder="John Doe">
+        <span class="error" id="nameError"></span>
       </div>
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        <input type="email" id="email" name="email" placeholder="you@example.com">
+        <span class="error" id="emailError"></span>
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="At least 6 characters" minlength="6" required>
+        <input type="password" id="password" name="password" placeholder="At least 6 characters">
+        <span class="error" id="passwordError"></span>
       </div>
 
       <div class="form-group">
         <label for="confirm">Confirm Password</label>
-        <input type="password" id="confirm" name="confirm" placeholder="Re-enter your password" minlength="6" required>
+        <input type="password" id="confirm" name="confirm" placeholder="Re-enter your password">
+        <span class="error" id="confirmError"></span>
       </div>
 
       <div class="form-group">
         <label>Gender</label>
+
         <div class="radio-group">
-          <label><input type="radio" name="gender" value="male" required> Male</label>
+          <label><input type="radio" name="gender" value="male"> Male</label>
           <label><input type="radio" name="gender" value="female"> Female</label>
           <label><input type="radio" name="gender" value="other"> Other</label>
         </div>
+
+        <span class="error" id="genderError"></span>
       </div>
 
       <div class="form-group">
         <label for="country">Country</label>
-        <select id="country" name="country" required>
+
+        <select id="country" name="country">
           <option value="">-- Select country --</option>
           <option value="bangladesh">Bangladesh</option>
           <option value="india">India</option>
@@ -51,14 +63,132 @@
           <option value="uk">UK</option>
           <option value="other">Other</option>
         </select>
+
+        <span class="error" id="countryError"></span>
       </div>
 
-      <label class="checkbox"><input type="checkbox" name="terms" required> I agree to the Terms &amp; Conditions</label>
+      <div class="form-group">
+        <label class="checkbox">
+          <input type="checkbox" id="terms" name="terms">
+          I agree to the Terms &amp; Conditions
+        </label>
+
+        <span class="error" id="termsError"></span>
+      </div>
 
       <button type="submit" class="btn">Register</button>
+
     </form>
 
-    <p class="switch-text">Already have an account? <a href="index.html">Login</a></p>
+    <p class="switch-text">
+      Already have an account?
+      <a href="index.html">Login</a>
+    </p>
+
   </div>
+
+  <script>
+
+    const form = document.getElementById("registerForm");
+
+    form.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+      clearErrors();
+
+      let name = document.getElementById("name");
+      let email = document.getElementById("email");
+      let password = document.getElementById("password");
+      let confirm = document.getElementById("confirm");
+      let gender = document.querySelector('input[name="gender"]:checked');
+      let country = document.getElementById("country");
+      let terms = document.getElementById("terms");
+
+      let valid = true;
+
+      // Name validation
+      if (name.value.trim() === "") {
+        showError("nameError", "Name is required.");
+        valid = false;
+      }
+      else if (!/^[A-Za-z ]+$/.test(name.value.trim())) {
+        showError("nameError", "Only letters and spaces are allowed.");
+        valid = false;
+      }
+      else if (name.value.trim().length < 3) {
+        showError("nameError", "Name must be at least 3 characters.");
+        valid = false;
+      }
+
+      // Email validation
+      if (email.value.trim() === "") {
+        showError("emailError", "Email is required.");
+        valid = false;
+      }
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        showError("emailError", "Invalid email address.");
+        valid = false;
+      }
+
+      // Password validation
+      if (password.value === "") {
+        showError("passwordError", "Password is required.");
+        valid = false;
+      }
+      else if (password.value.length < 6) {
+        showError("passwordError", "Password must be at least 6 characters.");
+        valid = false;
+      }
+
+      // Confirm password validation
+      if (confirm.value === "") {
+        showError("confirmError", "Please confirm your password.");
+        valid = false;
+      }
+      else if (confirm.value !== password.value) {
+        showError("confirmError", "Passwords do not match.");
+        valid = false;
+      }
+
+      // Gender validation
+      if (gender === null) {
+        showError("genderError", "Please select your gender.");
+        valid = false;
+      }
+
+      // Country validation
+      if (country.value === "") {
+        showError("countryError", "Please select your country.");
+        valid = false;
+      }
+
+      // Terms validation
+      if (terms.checked === false) {
+        showError("termsError", "Please accept the Terms and Conditions.");
+        valid = false;
+      }
+
+      
+      if (valid) {
+        alert("Registration successful!");
+        window.location.href = "index.html";
+      }
+
+    });
+
+    function showError(errorId, message) {
+      document.getElementById(errorId).innerHTML = message;
+    }
+
+    function clearErrors() {
+      let errors = document.querySelectorAll(".error");
+
+      errors.forEach(function(item) {
+        item.innerHTML = "";
+      });
+    }
+
+  </script>
+
 </body>
 </html>

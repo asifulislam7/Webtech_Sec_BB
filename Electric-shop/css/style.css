@@ -57,7 +57,7 @@ a.btn:hover {
   font-size: 14px;
 }
 
-/* ===== Login & Register ===== */
+
 .auth-body {
   min-height: 100vh;
   display: flex;
@@ -315,12 +315,11 @@ th {
 }
 
 
-/* Dashboard */
 .shop-dashboard {
     background-color: #EAF0F8;
 }
 
-/* Navigation bar */
+
 .shop-dashboard .searchbar {
     position: sticky;
     top: 0;
@@ -481,7 +480,7 @@ th {
     background-color: #A7BCE5;
 }
 
-/* Footer */
+
 .shop-dashboard .footer_style {
     width: 100%;
     height: 100px;
@@ -497,24 +496,9 @@ th {
     border-top: 1px solid #8CA8D8;
 }
 
-/* Small screens */
-@media (max-width: 768px) {
-    .shop-dashboard .searchbar {
-        height: auto;
-        flex-wrap: wrap;
-        gap: 10px;
-        padding: 10px;
-    }
-
-    .shop-dashboard .search-box-container {
-        width: 100%;
-    }
-
-    .shop-dashboard .product-box {
-        width: 40%;
-    }
-
-    .shop-dashboard .welcome-content h1 {
-        font-size: 30px;
-    }
+.error {
+  display: block;
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
 }
