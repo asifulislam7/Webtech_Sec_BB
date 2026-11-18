@@ -1,4 +1,3 @@
-/* ===== Reset & Base ===== */
 * {
   margin: 0;
   padding: 0;
@@ -27,7 +26,7 @@ a:hover {
   margin-bottom: 20px;
 }
 
-/* ===== Buttons ===== */
+
 .btn {
   display: block;
   width: 100%;
@@ -216,7 +215,7 @@ a.btn:hover {
   padding: 30px;
 }
 
-/* ===== Cards ===== */
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -243,7 +242,7 @@ a.btn:hover {
   margin-top: 8px;
 }
 
-/* ===== Table ===== */
+
 .table-box {
   background-color: #fff;
   padding: 20px;
@@ -284,7 +283,7 @@ th {
 .badge.warning { background-color: #fef3c7; color: #92400e; }
 .badge.danger  { background-color: #fee2e2; color: #b91c1c; }
 
-/* ===== Responsive ===== */
+
 @media (max-width: 768px) {
   .layout {
     flex-direction: column;
